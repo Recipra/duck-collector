@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/ducks/duck-detail.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<section class="cat-container">
+  <div class="cat-img">
+    <img 
+      src="{% static 'images/sk8r-boi-duck.svg' %}" 
+      alt="A skater boy duck"
+    >
+  </div>
+  <div class="cat-details">
+    <h1>{{ duck.name }}!</h1>
+    {% if duck.cool %}
+      <h2>{{ duck.name }} is a cool duck</h2>
+    {% else %}
+      <h2>{{ duck.name }} kinda stinks...what a nerd</h2>
+    {% endif %}
+    <p>{{ duck.description }}</p>
+    <p>{{ duck.name }}'s Quack Snack: {{ duck.quack_snack }}</p>
+  </div>
+</section>
+
+{% endblock %}

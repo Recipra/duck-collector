@@ -20,18 +20,21 @@
 <section class="card-container">
   {% for duck in ducks %}
     <div class="card">
-      <div class="card-content">
-        <div class="card-img-container">
-          <img src="{% static 'images/sk8r-boi-cat.svg' %}" alt="A skater boy duck">
-        </div>
-        <h2 class="card-title">{{ duck.name }}</h2>
-        {% if duck.cool %}
+      <a href="{% url 'cats_detail' cat.id %}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img src="{% static 'images/sk8r-boi-cat.svg' %}" alt="A skater boy duck">
+          </div>
+          <h2 class="card-title">{{ duck.name }}</h2>
+          {% if duck.cool %}
           <p>{{ duck.name }} has been deemed...cool</p>
-        {% else %}
+          {% else %}
           <p>{{ duck.name }} is NOT cool...</p>
-        {% endif %}
-        <p><small>{{ duck.description }}</small></p>
-      </div>
+          {% endif %}
+          <p><small>{{ duck.description }}</small></p>
+          <p><small>Quack Snack: {{ duck.quack_snack }}</small></p>
+        </div>
+      </a>
     </div>
   {% endfor %}
 </section>
