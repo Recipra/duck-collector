@@ -8,7 +8,11 @@
 {% block content %}
 
 <div class="page-header">
+  {% if duck %}
+  <h1>Edit {{ duck.name }}</h1>
+  {% else %}
   <h1>Add a Duck</h1>
+  {% endif %}
   <img src="{% static 'images/nerd-duck.svg' %}" alt="A duck using a computer"/>
 </div>
 {% comment %} 

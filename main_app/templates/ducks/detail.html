@@ -23,6 +23,10 @@
     {% endif %}
     <p>{{ duck.description }}</p>
     <p>{{ duck.name }}'s Quack Snack: {{ duck.quack_snack }}</p>
+    <div class="cat-actions">
+      <a href="{% url 'ducks_update' duck.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'ducks_delete' duck.id %}" class="btn danger">Delete</a>
+    </div>
   </div>
 </section>
 

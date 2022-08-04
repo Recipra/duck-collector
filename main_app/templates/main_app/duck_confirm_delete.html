@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="page-header">
+  <h1>Delete Duck?</h1>
+  <img src="{% static 'images/nerd-duck.svg' %}" alt="A duck using a computer"/>
+</div>
+<h2>Are you sure you want to delete {{ duck.name }}?</h2>
+
+<form action="" method="POST" class="form">
+  {% csrf_token %}
+  <a href="{% url 'ducks_detail' duck.id %}" class="btn secondary">
+    Spare the Duck
+  </a>
+  <button type="submit" class="btn danger">Yes - Cease...</button>
+</form>
+
+{% endblock %}

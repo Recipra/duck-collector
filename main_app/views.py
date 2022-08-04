@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Duck
 
 # Create your views here.
@@ -20,3 +20,11 @@ def ducks_detail(request, duck_id):
 class DuckCreate(CreateView):
   model = Duck
   fields = '__all__'
+
+class DuckUpdate(UpdateView):
+  model = Duck
+  fields = ['description', 'quack_snack', 'cool']
+
+class DuckDelete(DeleteView):
+  model = Duck
+  success_url = '/ducks/'
