@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
 from .models import Duck
 
 # Create your views here.
@@ -15,3 +16,7 @@ def ducks_index(request):
 def ducks_detail(request, duck_id):
   duck = Duck.objects.get(id=duck_id)
   return render(request, 'ducks/detail.html', {'duck': duck})
+
+class DuckCreate(CreateView):
+  model = Duck
+  fields = '__all__'

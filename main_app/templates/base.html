@@ -21,8 +21,9 @@
       </div>
       <nav>
         <ul>
-          <li><a href="/ducks">All Ducks</a></li>
-          <li><a href="/about">About</a></li>
+          <li><a href="{% url 'ducks_index' %}">All Ducks</a></li>
+          <li><a href="{% url 'ducks_create' %}">Add a Duck</a></li>
+          <li><a href="{% url 'about' %}%%">About</a></li>
         </ul>
       </nav>
     </header>
