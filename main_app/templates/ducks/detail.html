@@ -2,7 +2,12 @@
 {% load static %}
 
 {% block head %}
+<link href="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'css/mcdp.css' %}">
+<script src="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.js">
+</script>
 <link rel="stylesheet" type="text/css" href="{% static 'css/ducks/duck-detail.css' %}" />
+<script defer src="{% static 'js/duck-detail.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -29,5 +34,41 @@
     </div>
   </div>
 </section>
+<div class="feedings-toy-container">
+  <section class="feedings">
+    <div class="subsection-title">
+      <h2>Deeds</h2>
+      <img src="{% static 'images/duck-cone.svg' %}" alt="An ice cream cone duck" />
+      <img src="{% static 'images/duck-onigiri.svg' %}" alt="A duck as onigiri" />
+      <img src="{% static 'images/duck-kabob.svg' %}" alt="A kabob of ducks"/>
+    </div>
+    <h3>Add a Deed</h3>
+    <form action="{% url 'add_deed' duck.id %}" method="post" class="subsection-content">
+      {% csrf_token %}
+      {{ pr_form.as_p }}
+      <button type="submit" class="btn submit">Add Deed</button>
+    </form>
+    <h3>Past Deeds</h3>
+    {% if duck.public_relations_set.all.count %}
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Deed</th></tr>
+      </thead>
+      <tbody>
+        {% for deed in duck.public_relations_set.all %}
+          <tr>
+            <td>{{ deed.date }}</td>
+            <td>{{ deed.get_deed_display }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="subsection-content">
+      <p>{{ duck.name }} has done no deeds...for better or worse</p>
+    </div>
+    {% endif %}
+  </section>
+</div>
 
 {% endblock %}
