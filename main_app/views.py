@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Duck
+from django.views.generic import ListView, DetailView
+from .models import Duck, Hat
 from .forms import PRForm
 
 # Create your views here.
@@ -38,3 +39,13 @@ class DuckUpdate(UpdateView):
 class DuckDelete(DeleteView):
   model = Duck
   success_url = '/ducks/'
+
+class HatCreate(CreateView):
+  model = Hat
+  fields = '__all__'
+
+class HatList(ListView):
+  model = Hat
+
+class HatDetail(DetailView):
+  model = Hat

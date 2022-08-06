@@ -11,6 +11,18 @@ DEEDS = (
 )
 
 # Create your models here.
+
+class Hat(models.Model):
+  type = models.CharField(max_length=50)
+  color = models.CharField(max_length=20)
+
+  def __str__(self):
+    return self.type
+
+  def get_absolute_url(self):
+    return reverse("hats_detail", kwargs={"pk": self.id})
+  
+
 class Duck(models.Model):
   name = models.CharField(max_length=100)
   description = models.TextField(max_length=250)

@@ -1,0 +1,24 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block head %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/hats/hat-detail.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+  
+<div class="card" style="border-color: {{ hat.color }}">
+  <div class="card-bg" style="background-color: {{ hat.color }}"></div>
+  <div class="card-content">
+    <h2>{{ hat.type }}</h2>
+    <p>A {{ hat.color }} hat</p>
+  </div>
+</div>
+<a href="{% url 'hats_update' hat.id %}" class="btn warn">Edit</a>
+<a href="{% url 'hats_delete' hat.id %}" class="btn danger">Delete</a>
+
+{% endblock %}

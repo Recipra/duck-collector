@@ -9,5 +9,8 @@ urlpatterns = [
   path('ducks/create/', views.DuckCreate.as_view(), name='ducks_create'),
   path('ducks/<int:pk>/update/', views.DuckUpdate.as_view(), name='ducks_update'),
   path('ducks/<int:pk>/delete/', views.DuckDelete.as_view(), name='ducks_delete'),
-  path('ducks/<int:duck_id>/add_deed/', views.add_deed, name='add_deed')
+  path('ducks/<int:duck_id>/add_deed/', views.add_deed, name='add_deed'),
+  path('hats/create/', views.HatCreate.as_view(), name='hats_create'),
+  path('ducks/<int:pk>/', views.HatDetail.as_view(), name='hats_detail'),
+  path('ducks/', views.HatList.as_view(), name='hats_index')
 ]
