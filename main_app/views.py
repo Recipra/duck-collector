@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.views import LoginView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import Duck, Hat
 from .forms import PRForm
 
 # Create your views here.
-def home(request):
-  return render(request, 'home.html')
+class Home(LoginView):
+  template_name = 'home.html'
 
 def about(request):
   return render(request, 'about.html')
@@ -40,6 +41,10 @@ def remove_hat(request, duck_id, hat_id):
 class DuckCreate(CreateView):
   model = Duck
   fields = ['name', 'description', 'quack_snack', 'cool']
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
 
 class DuckUpdate(UpdateView):
   model = Duck
