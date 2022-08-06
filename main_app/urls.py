@@ -11,6 +11,8 @@ urlpatterns = [
   path('ducks/<int:pk>/delete/', views.DuckDelete.as_view(), name='ducks_delete'),
   path('ducks/<int:duck_id>/add_deed/', views.add_deed, name='add_deed'),
   path('hats/create/', views.HatCreate.as_view(), name='hats_create'),
-  path('ducks/<int:pk>/', views.HatDetail.as_view(), name='hats_detail'),
-  path('ducks/', views.HatList.as_view(), name='hats_index')
+  path('hats/', views.HatList.as_view(), name='hats_index'),
+  path('hats/<int:pk>/', views.HatDetail.as_view(), name='hats_detail'),
+  path('hats/<int:pk>/update/', views.HatUpdate.as_view(), name='hats_update'),
+  path('hats/<int:pk>/delete/', views.HatDelete.as_view(), name='hats_delete')
 ]

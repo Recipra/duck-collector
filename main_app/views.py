@@ -49,3 +49,11 @@ class HatList(ListView):
 
 class HatDetail(DetailView):
   model = Hat
+
+class HatUpdate(UpdateView):
+  model = Hat
+  fields = ['type', 'color']
+
+class HatDelete(DeleteView):
+  model = Hat
+  success_url = '/hats/'
