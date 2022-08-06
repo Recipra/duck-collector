@@ -44,6 +44,11 @@
     </div>
     <h3>Add a Deed</h3>
     <form action="{% url 'add_deed' duck.id %}" method="post" class="subsection-content">
+      {% if duck.deeds_for_today %}
+      <p class="fed">{{ duck.name }} has done enough for today...</p>
+      {% else %}
+      <p class="unfed">{{ duck.name }} hasn't gotten their PR up!</p>
+      {% endif %}
       {% csrf_token %}
       {{ pr_form.as_p }}
       <button type="submit" class="btn submit">Add Deed</button>

@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
 
 
 DEEDS = (
@@ -20,7 +21,10 @@ class Duck(models.Model):
     return self.name
 
   def get_absolute_url(self):
-      return reverse('ducks_detail', kwargs={'duck_id': self.id})
+    return reverse('ducks_detail', kwargs={'duck_id': self.id})
+
+  def deeds_for_today(self):
+    return self.public_relations_set.filter(date=date.today()).count() >= 3
 
 class Public_Relations(models.Model):
   date = models.DateField('Deed date')
