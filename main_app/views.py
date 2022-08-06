@@ -17,8 +17,9 @@ def ducks_index(request):
 
 def ducks_detail(request, duck_id):
   duck = Duck.objects.get(id=duck_id)
+  hats_duck_doesnt_have = Hat.objects.exclude(id__in = duck.hats.all().values_list('id'))
   pr_form = PRForm()
-  return render(request, 'ducks/detail.html', {'duck': duck, 'pr_form': pr_form})
+  return render(request, 'ducks/detail.html', {'duck': duck, 'pr_form': pr_form, 'hats': hats_duck_doesnt_have})
 
 def add_deed(request, duck_id):
   form = PRForm(request.POST)
@@ -28,9 +29,17 @@ def add_deed(request, duck_id):
     new_deed.save()
   return redirect('ducks_detail', duck_id=duck_id)
 
+def assoc_hat(request, duck_id, hat_id):
+  Duck.objects.get(id=duck_id).hats.add(hat_id)
+  return redirect('ducks_detail', duck_id=duck_id)
+
+def remove_hat(request, duck_id, hat_id):
+  Duck.objects.get(id=duck_id).hats.remove(hat_id)
+  return redirect('ducks_detail', duck_id=duck_id)
+
 class DuckCreate(CreateView):
   model = Duck
-  fields = '__all__'
+  fields = ['name', 'description', 'quack_snack', 'cool']
 
 class DuckUpdate(UpdateView):
   model = Duck

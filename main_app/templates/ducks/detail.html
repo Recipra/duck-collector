@@ -74,6 +74,60 @@
     </div>
     {% endif %}
   </section>
+  <section class="toys">
+    <div class="subsection-title">
+      <h2>Hats</h2>
+      <img src="{% static 'images/string.svg' %}" alt="A propeller hat" />
+      <img src="{% static 'images/mouse.svg' %}" alt="A snapback" />
+      <img src="{% static 'images/fish.svg' %}" alt="A beanie" />
+    </div>
+    <h3>{{ duck.name }}'s Hats</h3>
+    <div class="subsection-content">
+      {% if duck.hats.count %}
+        {% for hat in duck.hats.all %}
+          <div class="toy-container">
+            <div 
+              class="color-block"
+              style="background-color: {{ hat.color }}"
+            ></div>
+            <a href="{% url 'hats_detail' hat.id %}">
+              <p>A {{ hat.color }} {{ hat.type }} hat</p>
+            </a>
+            <form action="{% url 'remove_hat' duck.id hat.id %}" method="delete">
+              {% csrf_token %}
+              <button type="submit" class="btn danger">Take hat away</button>
+            </form>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-toys">{{ duck.name }} doesn't have any hats 😞</p>
+      {% endif %}
+    </div>
+    <h3>Available Hats</h3>
+    <div class="subsection-content">
+    {% if hats.count %}
+      {% for hat in hats.all %}
+        <div class="toy-container">
+          <div 
+            class="color-block"
+            style="background-color: {{ hat.color }}"
+          ></div>
+          <a href="{% url 'hats_detail' hat.id %}">
+            <p>A {{ hat.color }} {{ hat.type }} hat</p>
+          </a>
+          <form action="{% url 'assoc_hat' duck.id hat.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn submit">Give hat</button>
+          </form>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="all-toys">
+        {{ duck.name }} already has all the available toys 🥳
+      </p>
+    {% endif %}
+    </div>
+  </section>
 </div>
 
 {% endblock %}

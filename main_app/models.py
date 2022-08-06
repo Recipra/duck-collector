@@ -28,6 +28,7 @@ class Duck(models.Model):
   description = models.TextField(max_length=250)
   quack_snack = models.CharField(max_length=100)
   cool = models.BooleanField(default=False)
+  hats = models.ManyToManyField(Hat)
 
   def __str__(self):
     return self.name
