@@ -22,6 +22,7 @@
       <nav>
         <ul>
           {% if user.is_authenticated %}
+          <li><p>Welcome, {{ user }}</p></li>
           <li><a href="{% url 'ducks_index' %}">All Ducks</a></li>
           <li><a href="{% url 'ducks_create' %}">Add a Duck</a></li>
           <li><a href="{% url 'hats_index' %}">All Hats</a></li>
